@@ -1,32 +1,73 @@
 # Agent Harness Engineering
 
-## 核心文档
+## 项目简介
 
-| 文档 | 路径 | 内容 |
-|------|------|------|
-| 架构设计 | [ARCHITECTURE.md](ARCHITECTURE.md) | 系统定位、调度流程、组件依赖图、状态机 |
-| 编码规范 | [docs/CONVENTIONS.md](docs/CONVENTIONS.md) | 强制约束、命名规范 |
-| 测试规范 | [docs/TESTING.md](docs/TESTING.md) | 单元/集成/基准测试规范 |
-| 文档编写规范 | [docs/DOC_CONVENTIONS.md](docs/DOC_CONVENTIONS.md) | 文档职能分类、内容准入原则、修改质量门槛、引用规范 |
-| 验收标准 | [docs/COMMIT_ACCEPTANCE.md](docs/COMMIT_ACCEPTANCE.md) | 覆盖率、通过率、pre-commit 门禁的完整验收条件 |
-| Code Review 规范 | [docs/CODE_REVIEW.md](docs/CODE_REVIEW.md) | pre-push AI 代码审查机制、三级 checklist、报告格式 |
-| 文档同步规范 | [docs/DOC_SYNC.md](docs/DOC_SYNC.md) | pre-push 文档漂移检测、14 个文档 checklist、内容约束 |
-| 本地环境 | [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md) | Docker 依赖启动、集成测试、基准测试、Makefile 命令速览 |
+基于Agent Harness Engineering（智能体驾驭工程）顶层思想的多Agent软件开发实践方案，聚焦「人类制定驾驭规则、多Agent在约束框架内完成全流程开发」的上层落地。
 
-## 目录结构（一句话速览）
+核心逻辑：**人定驾驭规则 → Agent受控执行 → 全链路闭环校验 → 熵收敛治理**
+
+## 核心文档索引
+
+| 文档名称 | 文档路径 | 内容概述 |
+|----------|----------|----------|
+| 全局架构总览 | [docs/overview.md](docs/overview.md) | 核心思想、全局架构图、多Agent角色分工、全局前置条件 |
+| 模块1：需求标准化转化 | [docs/requirements-standardization.md](docs/requirements-standardization.md) | 需求校准流程、校验标准、《需求校准指南》编写规范 |
+| 模块2：架构设计与多维度评审 | [docs/architecture-design-review.md](docs/architecture-design-review.md) | 架构设计流程、多Agent评审机制、《方案设计文档编写指南》、《设计方案评审文档编写指南》 |
+| 模块3：开发对齐与代码实现 | [docs/development-alignment.md](docs/development-alignment.md) | 开发前对齐确认、门禁机制、《设计方案对齐确认文档编写指南》、《方案对齐评估指南》 |
+| 模块4：自动化验收与全流程闭环 | [docs/automated-acceptance.md](docs/automated-acceptance.md) | 全维度验收流程、版本打标、《验收标准文档编写指南》、《验收报告编写指南》 |
+| 模块5：文档熵收敛治理 | [docs/doc-entropy-governance.md](docs/doc-entropy-governance.md) | Git Hook双机制、Agent-5巡检、《文档熵收敛巡检检查指南》、slim-index校验规则与脚本 |
+| 模块6：知识库文档组织与索引结构 | [docs/knowledge-base-organization.md](docs/knowledge-base-organization.md) | docs目录结构、文档命名规范、版本映射机制、锚点要求 |
+| 模块6：指南与规约文档的自我迭代 | [docs/guide-self-iteration.md](docs/guide-self-iteration.md) | 指南生成策略、Agent自主学习进化机制、规约减重/增重流程与模板 |
+| 模块7：统一交互入口集成方案 | [docs/unified-interaction-entry.md](docs/unified-interaction-entry.md) | 企微机器人集成、腾讯会议自动需求收集、多入口协同机制 |
+
+## 项目级规范文档
+
+| 文档名称 | 文档路径 | 内容概述 |
+|----------|----------|----------|
+| 系统架构 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 系统架构、组件依赖 |
+| 编码规范 | [docs/CONVENTIONS.md](docs/CONVENTIONS.md) | 命名规范、编码约束、代码风格 |
+| 测试规范 | [docs/TESTING.md](docs/TESTING.md) | 单元测试、集成测试、验收测试标准 |
+| 环境搭建 | [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md) | 开发环境搭建、依赖安装、常用命令 |
+
+## Agent执行指南文档
+
+| 指南名称 | 文档路径 | 使用Agent |
+|----------|----------|-----------|
+| 《方案设计文档编写指南》 | [docs/guide/solution-design-guide.md](docs/guide/solution-design-guide.md) | Agent-1 |
+| 《验收标准文档编写指南》 | docs/guide/acceptance-criteria-guide.md | Agent-4 |
+| 《验收报告编写指南》 | docs/guide/acceptance-report-guide.md | Agent-4 |
+| 《设计方案评审文档编写指南》 | docs/guide/design-review-guide.md | Agent-2 |
+| 《设计方案对齐确认文档编写指南》 | docs/guide/design-alignment-guide.md | Agent-3 |
+| 《方案对齐评估指南》 | docs/guide/design-alignment-evaluation-guide.md | Agent-3 |
+| 《需求校准指南》 | docs/guide/requirement-calibration-guide.md | Agent-0 |
+| 《文档熵收敛巡检检查指南》 | docs/guide/doc-entropy-check-guide.md | Agent-5 |
+
+## 目录结构速览
 
 ```
-account/          聚合根：Account + ProviderInfo + Status + TrackedUsage + AccountStats
-balancer/         负载均衡器：Pick（三种模式）+ ReportSuccess/Failure + 占用控制
-  occupancy/      并发占用控制器（Unlimited / FixedLimit / AdaptiveLimit）
-selector/         选号策略接口 + 内置策略（account 级 + group 级）
-resolver/         服务发现层：从存储解析可用 Provider 和 Account
-storage/          定义存储接口，以及后端存储驱动的接口实现（Memory / SQLite / MySQL / Redis）
-  filtercond/     通用过滤条件表达式树
-health/           健康检查编排器 + 内置检查项 + ReportHandler
-  checks/         内置检查项（credential / probe / recovery / refresh / usage / usage_rules）
-circuitbreaker/   熔断器：连续失败阈值 + 动态计算
-cooldown/         冷却管理器：限流后暂停选号
-usagetracker/     账号额度用量追踪管理, 同时也是做主动用量限流控制的依据，避免在使用账号时候被动发现账号的限流情况
-cli/              命令行管理工具，主要用于方便快速测试账号管理的各个功能
+/
+├── AGENTS.md                  # 本文件：项目索引入口
+├── agent-harness-engineering.md  # 完整原始方案文档（归档用）
+├── 版本映射表.xlsx              # 需求ID→版本→文档路径→Commit映射
+└── docs/
+    ├── overview.md            # 全局架构总览
+    ├── requirements-standardization.md  # 模块1
+    ├── architecture-design-review.md    # 模块2
+    ├── development-alignment.md         # 模块3
+    ├── automated-acceptance.md          # 模块4
+    ├── doc-entropy-governance.md        # 模块5
+    ├── knowledge-base-organization.md   # 模块6（文档组织）
+    ├── guide-self-iteration.md          # 模块6（指南迭代）
+    ├── unified-interaction-entry.md     # 模块7
+    ├── guide/                 # Agent执行指南文档目录
+    ├── demand/                # 需求产出物目录（按需求ID组织）
+    ├── slim/                  # 规约提案管理目录（减重+增重）
+    └── reference/             # 参考文档（术语表、变更日志等）
 ```
+
+## 快速开始
+
+1. 阅读 [全局架构总览](docs/overview.md)，理解核心思想和角色分工；
+2. 按 [全局落地前置条件](docs/overview.md#14-全局落地前置条件必做否则无法推进) 完成环境搭建和规则文档准备；
+3. 从 [模块1：需求标准化转化](docs/requirements-standardization.md) 开始，按模块顺序推进；
+4. 遇到规约问题，参考 [指南与规约文档的自我迭代](docs/guide-self-iteration.md)。
