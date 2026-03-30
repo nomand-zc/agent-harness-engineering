@@ -15,10 +15,10 @@
 | 模块2：架构设计与多维度评审 | [docs/architecture-design-review.md](docs/architecture-design-review.md) | 架构设计流程、多Agent评审机制、《方案设计文档编写指南》、《设计方案评审文档编写指南》 |
 | 模块3：开发对齐与代码实现 | [docs/development-alignment.md](docs/development-alignment.md) | 开发前对齐确认、门禁机制、《设计方案对齐确认文档编写指南》、《方案对齐评估指南》 |
 | 模块4：自动化验收与全流程闭环 | [docs/automated-acceptance.md](docs/automated-acceptance.md) | 全维度验收流程、版本打标、《验收标准文档编写指南》、《验收报告编写指南》 |
-| 模块5：文档熵收敛治理 | [docs/doc-entropy-governance.md](docs/doc-entropy-governance.md) | Git Hook双机制、Agent-5巡检、《文档熵收敛巡检检查指南》、slim-index校验规则与脚本 |
+| 模块5：文档熵收敛治理 | [docs/doc-entropy-governance.md](docs/doc-entropy-governance.md) | 解决代码与架构设计文档脱节漂移问题；Git Hook（pre-push）刚性拦截 + Agent-5兜底巡检双机制；《文档熵收敛巡检检查指南》 |
 | 模块6：知识库文档组织与索引结构 | [docs/knowledge-base-organization.md](docs/knowledge-base-organization.md) | docs目录结构、文档命名规范、版本映射机制、锚点要求 |
 | 模块6：指南与规约文档的自我迭代 | [docs/guide-self-iteration.md](docs/guide-self-iteration.md) | 指南生成策略、Agent自主学习进化机制、规约减重/增重流程与模板 |
-| 模块7：统一交互入口集成方案 | [docs/unified-interaction-entry.md](docs/unified-interaction-entry.md) | 企微机器人集成、腾讯会议自动需求收集、多入口协同机制 |
+| 模块7：统一交互入口集成方案 | [docs/unified-interaction-entry.md](docs/unified-interaction-entry.md) | 方式A（@单个Agent单步精细控制）与方式B（@Workflow-Agent全流程自动化）长期并存、按需选择；规约迭代闭环；Workflow-Agent新增条件 |
 
 ## 项目级规范文档
 
@@ -40,7 +40,7 @@
 | 《设计方案对齐确认文档编写指南》 | docs/guide/design-alignment-guide.md | Agent-3 |
 | 《方案对齐评估指南》 | docs/guide/design-alignment-evaluation-guide.md | Agent-3 |
 | 《需求校准指南》 | docs/guide/requirement-calibration-guide.md | Agent-0 |
-| 《文档熵收敛巡检检查指南》 | docs/guide/doc-entropy-check-guide.md | Agent-5 |
+| 《文档熵收敛巡检检查指南》 | docs/guide/doc-entropy-check-guide.md | Agent-5（规约指南Agent） |
 
 ## 目录结构速览
 
