@@ -57,11 +57,13 @@ docs/
 │   ├── design-alignment-guide.md            # 《设计方案对齐确认文档编写指南》
 │   ├── design-alignment-evaluation-guide.md # 《方案对齐评估指南》
 │   ├── requirement-calibration-guide.md     # 《需求校准指南》
-│   └── doc-entropy-check-guide.md           # 《文档熵收敛巡检检查指南》
+│   ├── doc-entropy-check-guide.md           # 《文档熵收敛巡检检查指南》
+│   └── backlog-agent-guide.md               # 《Backlog整理Agent执行指南》
 │
 ├── demand/                   # 需求产物目录（按需求ID组织）
 │   ├── REQ-2026-001/
 │   │   ├── PRD.md                           # 标准化需求文档
+│   │   ├── backlog.md                       # 本需求处理过程中产生的跟进处理事项
 │   │   ├── design/
 │   │   │   ├── architecture-V1.0.0.md       # 架构设计方案（初始版本）
 │   │   │   └── architecture-V1.0.1.md       # 架构设计方案（迭代版本）
@@ -94,6 +96,13 @@ docs/
 ├── TESTING.md                # 测试规范文档（项目级）
 ├── ENVIRONMENT.md            # 环境搭建文档（项目级）
 │
+├── backlog/                  # 全局跟进处理事项管理目录
+│   ├── backlog.md             # 全局 Backlog 汇总（Agent-7维护）
+│   ├── backlog-management.md  # Backlog 管理规范
+│   ├── reports/               # 历次整理报告
+│   │   └── backlog-report-YYYYMMDD.md
+│   └── pending-requirements/  # 待排期需求草稿（Agent-7整理，人类确认后触发Agent-0）
+│
 ├── slim/                     # 规约提案管理目录（减重+增重）
 │   ├── proposals/
 │   │   ├── SLIM-2026-001.md  # 减重提案（示例）
@@ -121,6 +130,10 @@ docs/
 | `docs/demand/{需求ID}/review/` | 存放所有评审文档（平级评审、专项评审） | Agent-2 + 专家Agent |
 | `docs/demand/{需求ID}/acceptance/` | 存放验收标准与验收报告 | Agent-4 |
 | `docs/demand/{需求ID}/alignment/` | 存放设计方案对齐确认文档 | Agent-3 |
+| `docs/demand/{需求ID}/backlog.md` | 本需求处理过程中由各 Agent 写入的跟进处理事项，状态「待汇总」时由 Agent-7 定期汇总 | Agent-1/2/3/专家Agent 写入，Agent-7 汇总 |
+| `docs/backlog/` | 全局跟进处理事项管理目录，汇总各需求 Backlog 条目，追踪排期与转化状态 | Agent-7 维护 |
+| `docs/backlog/backlog.md` | 全局 Backlog 汇总视图，按优先级分区展示所有待处理事项 | Agent-7 |
+| `docs/backlog/pending-requirements/` | 已排期条目转化的需求草稿，人类确认后触发 Agent-0 | Agent-7 整理，人类确认 |
 | `docs/slim/` | 规约提案管理目录，统一存放减重与增重两类提案及对应规则文件 | 人类主导，Agent辅助 |
 | `docs/slim/proposals/` | 存放所有提案文件（SLIM-/ENRICH- 前缀区分），含审批记录 | 提案发起方填写，人类审批 |
 | `docs/slim/archived-rules/` | 存放已减重规则归档文件，含规则原文、减重记录、恢复记录 | 人类操作，Agent只读 |

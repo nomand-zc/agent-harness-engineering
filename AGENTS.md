@@ -20,6 +20,7 @@
 | 模块6：指南与规约文档的自我迭代 | [docs/guide-self-iteration.md](docs/guide-self-iteration.md) | 指南生成策略、Agent自主学习进化机制、规约减重/增重流程与模板 |
 | 模块7：统一交互入口集成方案 | [docs/unified-interaction-entry.md](docs/unified-interaction-entry.md) | 方式A（@单个Agent单步精细控制）与方式B（@Workflow-Agent全流程自动化）长期并存、按需选择；会议助手Agent（腾讯会议预约+会议纪要+需求草稿转化）；规约迭代闭环；Workflow-Agent新增条件 |
 | 版本管理统一指南 | [docs/version-management-unified-guide.md](docs/version-management-unified-guide.md) | 版本号规范、版本映射表维护、需求ID与版本联动规则 |
+| Backlog管理规范 | [docs/backlog/backlog-management.md](docs/backlog/backlog-management.md) | 跟进处理事项的来源、字段规范、优先级体系、排期转化流程；Agent-7执行依据 |
 
 ## 项目级规范文档
 
@@ -41,11 +42,12 @@
 | Agent-4 | 验收Agent | @验收 | 人类手动触发 | 依据验收标准执行全维度自动化验收 | 《验收标准文档编写指南》《验收报告编写指南》 |
 | Agent-5 | 规约指南Agent | @规约指南 | 人类在企微群中 @ 触发 | 接收Review反馈，维护与迭代全套规约指南文档 | 各类指南文档 |
 | Agent-6 | 文档熵收敛巡检Agent | 无（不占企微席位） | Git pre-push 钩子自动触发；主干合并增量触发；每日22:00全量定时触发 | 全链路文档熵收敛巡检，校验版本联动与锚点一致性，阻断不合规推送 | 《文档熵收敛巡检检查指南》 |
+| Agent-7 | Backlog整理Agent | @Backlog整理 | 人类手动触发；需求验收通过后事件驱动；每周一09:00定时触发 | 汇总整理各阶段产生的跟进处理事项，评估优先级，给出排期建议，将条目转化为需求草稿交人类确认后触发 Agent-0 | 《Backlog整理Agent执行指南》 |
 | 专家Agent（3类） | 安全/性能/合规评审Agent | 各自独立身份 | 人类手动触发 | 补充评审，覆盖安全、性能、合规三个专项维度 | 各专项评审规则 |
 | 会议助手Agent | 会议助手Agent | @会议助手 | 人类手动触发 | 预约腾讯会议、生成结构化会议纪要、将会议内容整理为可输入 Agent-0 的需求草稿 | docs/unified-interaction-entry.md §5 |
 | Workflow-Agent | 全流程编排Agent | @Workflow-Agent | 人类手动触发（质量达标后新增入群） | 按序编排调度 Agent-0~4 完成全流程，推送关键节点产出物 | 各Agent指南文档 |
 
-> Agent-6 由 Git pre-push 钩子自动触发，不在企微群中以数字人员工形式存在；其余 Agent-0 至 Agent-5 及会议助手Agent 长期常驻企微群，Workflow-Agent 在各 Agent 输出质量稳定达标后新增入群。
+> Agent-6 由 Git pre-push 钩子自动触发，不在企微群中以数字人员工形式存在；Agent-7 常驻企微群，支持人类手动触发、需求验收事件驱动和定时自动触发三种方式；其余 Agent-0 至 Agent-5 及会议助手Agent 长期常驻企微群，Workflow-Agent 在各 Agent 输出质量稳定达标后新增入群。
 
 ## Agent执行指南文档
 
@@ -60,6 +62,7 @@
 | 《验收标准文档编写指南》 | [docs/guide/acceptance-criteria-guide.md](docs/guide/acceptance-criteria-guide.md) | Agent-4 |
 | 《验收报告编写指南》 | [docs/guide/acceptance-report-guide.md](docs/guide/acceptance-report-guide.md) | Agent-4 |
 | 《文档熵收敛巡检检查指南》 | [docs/guide/doc-entropy-check-guide.md](docs/guide/doc-entropy-check-guide.md) | Agent-6（文档熵收敛巡检Agent） |
+| 《Backlog整理Agent执行指南》 | [docs/guide/backlog-agent-guide.md](docs/guide/backlog-agent-guide.md) | Agent-7（Backlog整理Agent） |
 
 ## 目录结构速览
 
@@ -81,6 +84,14 @@
     ├── version-management-unified-guide.md  # 版本管理统一指南
     ├── guide/                 # Agent执行指南文档目录
     ├── demand/                # 需求产出物目录（按需求ID组织）
+    │   └── {需求ID}/
+    │       ├── backlog.md     # 该需求处理过程中产生的跟进处理事项（各Agent写入，Agent-7汇总）
+    │       └── ...            # 其他产出物
+    ├── backlog/               # 全局Backlog管理目录
+    │   ├── backlog.md         # 全局跟进处理事项汇总（Agent-7维护）
+    │   ├── backlog-management.md  # Backlog管理规范
+    │   ├── reports/           # 历次整理报告
+    │   └── pending-requirements/  # 待排期需求草稿
     ├── slim/                  # 规约提案管理目录（减重+增重）
     └── reference/             # 参考文档（术语表、变更日志等）
 ```
