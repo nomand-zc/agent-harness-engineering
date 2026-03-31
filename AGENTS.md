@@ -18,7 +18,8 @@
 | 模块5：文档熵收敛治理 | [docs/doc-entropy-governance.md](docs/doc-entropy-governance.md) | 解决代码与架构设计文档脱节漂移问题；Git Hook（pre-push）刚性拦截 + Agent-6（文档熵收敛巡检Agent）兜底巡检双机制；《文档熵收敛巡检检查指南》 |
 | 模块6：知识库文档组织与索引结构 | [docs/knowledge-base-organization.md](docs/knowledge-base-organization.md) | docs目录结构、文档命名规范、版本映射机制、锚点要求 |
 | 模块6：指南与规约文档的自我迭代 | [docs/guide-self-iteration.md](docs/guide-self-iteration.md) | 指南生成策略、Agent自主学习进化机制、规约减重/增重流程与模板 |
-| 模块7：统一交互入口集成方案 | [docs/unified-interaction-entry.md](docs/unified-interaction-entry.md) | 方式A（@单个Agent单步精细控制）与方式B（@Workflow-Agent全流程自动化）长期并存、按需选择；规约迭代闭环；Workflow-Agent新增条件 |
+| 模块7：统一交互入口集成方案 | [docs/unified-interaction-entry.md](docs/unified-interaction-entry.md) | 方式A（@单个Agent单步精细控制）与方式B（@Workflow-Agent全流程自动化）长期并存、按需选择；会议助手Agent（腾讯会议预约+会议纪要+需求草稿转化）；规约迭代闭环；Workflow-Agent新增条件 |
+| 版本管理统一指南 | [docs/version-management-unified-guide.md](docs/version-management-unified-guide.md) | 版本号规范、版本映射表维护、需求ID与版本联动规则 |
 
 ## 项目级规范文档
 
@@ -41,22 +42,24 @@
 | Agent-5 | 规约指南Agent | @规约指南 | 人类在企微群中 @ 触发 | 接收Review反馈，维护与迭代全套规约指南文档 | 各类指南文档 |
 | Agent-6 | 文档熵收敛巡检Agent | 无（不占企微席位） | Git pre-push 钩子自动触发；主干合并增量触发；每日22:00全量定时触发 | 全链路文档熵收敛巡检，校验版本联动与锚点一致性，阻断不合规推送 | 《文档熵收敛巡检检查指南》 |
 | 专家Agent（3类） | 安全/性能/合规评审Agent | 各自独立身份 | 人类手动触发 | 补充评审，覆盖安全、性能、合规三个专项维度 | 各专项评审规则 |
+| 会议助手Agent | 会议助手Agent | @会议助手 | 人类手动触发 | 预约腾讯会议、生成结构化会议纪要、将会议内容整理为可输入 Agent-0 的需求草稿 | docs/unified-interaction-entry.md §5 |
 | Workflow-Agent | 全流程编排Agent | @Workflow-Agent | 人类手动触发（质量达标后新增入群） | 按序编排调度 Agent-0~4 完成全流程，推送关键节点产出物 | 各Agent指南文档 |
 
-> Agent-6 由 Git pre-push 钩子自动触发，不在企微群中以数字人员工形式存在；其余 Agent-0 至 Agent-5 长期常驻企微群，Workflow-Agent 在各 Agent 输出质量稳定达标后新增入群。
+> Agent-6 由 Git pre-push 钩子自动触发，不在企微群中以数字人员工形式存在；其余 Agent-0 至 Agent-5 及会议助手Agent 长期常驻企微群，Workflow-Agent 在各 Agent 输出质量稳定达标后新增入群。
 
 ## Agent执行指南文档
 
 | 指南名称 | 文档路径 | 使用Agent |
 |----------|----------|-----------|
+| 《会议助手执行指南》 | [docs/guide/meeting-assistant-guide.md](docs/guide/meeting-assistant-guide.md) | 会议助手Agent |
+| 《需求校准指南》 | [docs/guide/requirement-calibration-guide.md](docs/guide/requirement-calibration-guide.md) | Agent-0 |
 | 《方案设计文档编写指南》 | [docs/guide/solution-design-guide.md](docs/guide/solution-design-guide.md) | Agent-1 |
-| 《验收标准文档编写指南》 | docs/guide/acceptance-criteria-guide.md | Agent-4 |
-| 《验收报告编写指南》 | docs/guide/acceptance-report-guide.md | Agent-4 |
-| 《设计方案评审文档编写指南》 | docs/guide/design-review-guide.md | Agent-2 |
-| 《设计方案对齐确认文档编写指南》 | docs/guide/design-alignment-guide.md | Agent-3 |
-| 《方案对齐评估指南》 | docs/guide/design-alignment-evaluation-guide.md | Agent-3 |
-| 《需求校准指南》 | docs/guide/requirement-calibration-guide.md | Agent-0 |
-| 《文档熵收敛巡检检查指南》 | docs/guide/doc-entropy-check-guide.md | Agent-6（文档熵收敛巡检Agent） |
+| 《设计方案评审文档编写指南》 | [docs/guide/design-review-guide.md](docs/guide/design-review-guide.md) | Agent-2 |
+| 《设计方案对齐确认文档编写指南》 | [docs/guide/design-alignment-guide.md](docs/guide/design-alignment-guide.md) | Agent-3 |
+| 《方案对齐评估指南》 | [docs/guide/design-alignment-evaluation-guide.md](docs/guide/design-alignment-evaluation-guide.md) | Agent-3 |
+| 《验收标准文档编写指南》 | [docs/guide/acceptance-criteria-guide.md](docs/guide/acceptance-criteria-guide.md) | Agent-4 |
+| 《验收报告编写指南》 | [docs/guide/acceptance-report-guide.md](docs/guide/acceptance-report-guide.md) | Agent-4 |
+| 《文档熵收敛巡检检查指南》 | [docs/guide/doc-entropy-check-guide.md](docs/guide/doc-entropy-check-guide.md) | Agent-6（文档熵收敛巡检Agent） |
 
 ## 目录结构速览
 
@@ -74,7 +77,8 @@
     ├── doc-entropy-governance.md        # 模块5
     ├── knowledge-base-organization.md   # 模块6（文档组织）
     ├── guide-self-iteration.md          # 模块6（指南迭代）
-    ├── unified-interaction-entry.md     # 模块7
+    ├── unified-interaction-entry.md     # 模块7（含会议助手Agent）
+    ├── version-management-unified-guide.md  # 版本管理统一指南
     ├── guide/                 # Agent执行指南文档目录
     ├── demand/                # 需求产出物目录（按需求ID组织）
     ├── slim/                  # 规约提案管理目录（减重+增重）
